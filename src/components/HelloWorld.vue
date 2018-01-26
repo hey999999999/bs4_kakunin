@@ -1,11 +1,12 @@
 <template>
-	<b-container fluid class="top text-center d-flex flex-column justify-content-center">
-		<b-row class="border border-info text-center d-block"><h1>header</h1></b-row>
-		<b-row class="border border-success align-self-stretch h-100">
+	<b-container fluid class="top text-center d-flex flex-column justify-content-end">
+		<b-row class="border border-info text-center d-block" style="height:10vh;display:flex;"><h1>header</h1></b-row>
+		<b-row class="border border-success mt-0 pt-0" style="height:80vh;">
 			<b-col sm="2" class="border border-info">
-				<b-row class="h-100" style="overflow:scroll;">
+				<b-row>
 					<b-col class="d-flex justify-content-between flex-column-reverse">
 						<img src="../assets/logo.png" class="img img-responsive"/>
+						<b-btn @click="onClick">押して</b-btn>
 						<ul>
 							<li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
 							<li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
@@ -22,19 +23,18 @@
 							<li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
 						</ul>
 						<h6>Essential Links</h6>
-						<b-btn @click="onClick">押して</b-btn>
 						<!--h3>{{ msg }}</h3-->
 					</b-col>
 				</b-row>
 			</b-col>
-			<b-col class="border border-danger d-flex flex-column-reverse position-relative flex-nowrap" style="overflow-y:auto;">
+			<b-col class="border border-danger" style="overflow-y:scroll;height:80vh;">
 				<!--b-row><b-col><h3 class="border border-info rounded py-5 position-sticky">hoge</h3></b-col></b-row-->
 				<b-row v-for="(v, id) in arr" :key="id" class="position-static d-block">
 					<b-col sm="12"><h3 class="border border-info rounded py-2">{{v}}</h3></b-col>
 				</b-row>
 			</b-col>
 		</b-row>
-		<b-row class="border border-warining text-center d-block"><h1>footer</h1></b-row>
+		<b-row class="border border-warining text-center d-block" style="height:10vh;"><h1>footer</h1></b-row>
 		<!--b-card class="h-100 w-100 p-0 m-0 d-inline-block">
 			<b-card-header class="position-fixed fixed-top clearfix">header</b-card-header>
 			<b-card-body class="p-0 mt-4 ml-1 mr-1 position-relative h-100 mh-100 border border-info">hoge</b-card-body>
