@@ -27,11 +27,21 @@
 					</b-col>
 				</b-row>
 			</b-col>
-			<b-col class="border border-danger" style="overflow-y:scroll;height:80vh;">
-				<!--b-row><b-col><h3 class="border border-info rounded py-5 position-sticky">hoge</h3></b-col></b-row-->
-				<b-row v-for="(v, id) in arr" :key="id" class="position-static d-block">
-					<b-col sm="12"><h3 class="border border-info rounded py-2">{{v}}</h3></b-col>
-				</b-row>
+			<b-col class="px-0">
+				<div class="border border-danger" style="overflow-y:scroll;height:80vh;">
+					<div class="d-flex flex-column-reverse justify-content-start" style="min-height:100%;">
+					<div sm="12" v-for="(v, id) in arr" :key="id" class="position-static d-block">
+							<h3 class="border border-info rounded py-2">{{v}}</h3>
+					</div>
+					</div>
+					
+					<!--b-row>
+						<b-col sm="12" v-for="(v, id) in arr" :key="id" class="position-static d-block">
+							<h3 class="border border-info rounded py-2">{{v}}</h3>
+						</b-col>
+					</b-row-->
+					<!--b-row><b-col><h3 class="border border-info rounded py-5 position-sticky">hoge</h3></b-col></b-row-->
+				</div>
 			</b-col>
 		</b-row>
 		<b-row class="border border-warining text-center d-block" style="height:10vh;"><h1>footer</h1></b-row>
@@ -105,6 +115,8 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import $ from 'jquery';
 export default {
   name: 'HelloWorld',
   data () {
@@ -119,6 +131,7 @@ export default {
   methods: {
 	  onClick(e){
 		  this.arr.unshift(new Date());
+		  Vue.nextTick(() => window.setTimeout(() => window.scroll(0, $(document).height()),300));
 	  },
     countDownChanged (dismissCountDown) {
       this.dismissCountDown = dismissCountDown
