@@ -1,11 +1,11 @@
 <template>
-	<b-container fluid class="top text-center d-flex flex-column justify-content-end">
-		<b-row class="border border-info mb-auto text-center d-block"><h1>header</h1></b-row>
-		<b-row class="border border-success h-100">
+	<b-container fluid class="top text-center d-flex flex-column justify-content-center">
+		<b-row class="border border-info text-center d-block"><h1>header</h1></b-row>
+		<b-row class="border border-success align-self-stretch h-100">
 			<b-col sm="2" class="border border-info">
 				<b-row class="h-100" style="overflow:scroll;">
 					<b-col class="d-flex justify-content-between flex-column-reverse">
-						<img src="../assets/logo.png"/>
+						<img src="../assets/logo.png" class="img img-responsive"/>
 						<ul>
 							<li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
 							<li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
@@ -27,9 +27,10 @@
 					</b-col>
 				</b-row>
 			</b-col>
-			<b-col class="border border-danger d-flex flex-column-reverse h-100" style="height:100%;overflow-y:scroll;">
-				<b-row v-for="(v, id) in arr" :key="id">
-					<b-col><h3 class="border border-info d-block">{{v}}</h3></b-col>
+			<b-col class="border border-danger d-flex flex-column-reverse position-relative flex-nowrap" style="overflow-y:auto;">
+				<!--b-row><b-col><h3 class="border border-info rounded py-5 position-sticky">hoge</h3></b-col></b-row-->
+				<b-row v-for="(v, id) in arr" :key="id" class="position-static d-block">
+					<b-col sm="12"><h3 class="border border-info rounded py-2">{{v}}</h3></b-col>
 				</b-row>
 			</b-col>
 		</b-row>
@@ -64,9 +65,6 @@
 						</ul>
 						<h2>Essential Links</h2>
 						<h1>{{ msg }}</h1>
-					</b-col>
-					<b-col>
-					<b-alert v-repeat="v in arr">{{v}}</b-alert>
 					</b-col>
 				</b-row>
 				<b-row style="margin-bottom:0;">bar</b-row>
@@ -120,7 +118,7 @@ export default {
   },
   methods: {
 	  onClick(e){
-		  this.arr.push(new Date());
+		  this.arr.unshift(new Date());
 	  },
     countDownChanged (dismissCountDown) {
       this.dismissCountDown = dismissCountDown
@@ -136,6 +134,8 @@ export default {
 <style scoped lang="scss">
 .top{
 	height:100vh;
+	min-height:100vh;
+	max-height:100vh;
 }
 .side-nav{
 	background-color: #ddffdd;
