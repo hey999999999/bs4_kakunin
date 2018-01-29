@@ -29,9 +29,12 @@
 			</b-col>
 			<b-col class="px-0">
 				<div class="border border-danger" style="overflow-y:scroll;height:80vh;">
-					<div class="d-flex flex-column-reverse justify-content-start" style="min-height:100%;">
+					<div class="d-flex flex-column-reverse justify-content-start" style="min-height:100%;" id="chatlist">
 					<div sm="12" v-for="(v, id) in arr" :key="id" class="position-static d-block">
-							<h3 class="border border-info rounded py-2">{{v}}</h3>
+						<h3 class="border border-info rounded py-2">
+							{{id}}/{{v}}
+							<input type="image" :id="'chat_' + id" src="about:blank" value="" alt="" :visible="flag" style="height:1px;width:1px;display:inline;"/>
+						</h3>
 					</div>
 					</div>
 					
@@ -125,13 +128,30 @@ export default {
 		arr: [],
 		dismissSecs: 10,
 		dismissCountDown: 0,
-		showDismissibleAlert: false
+		showDismissibleAlert: false,
+		flag: false
     }
   },
   methods: {
 	  onClick(e){
 		  this.arr.unshift(new Date());
-		  Vue.nextTick(() => window.setTimeout(() => window.scroll(0, $(document).height()),300));
+		  const c = document.getElementById('chatlist');
+		  if(c && c.scrollHeight){
+			  c.scrollTop = 3000;
+			  c.scroll(0, c.scrollHeight);
+		      //console.log(c.scrollHeight, c.scrollTop);
+			  this.flag = true;
+			  Vue.nextTick(() => {
+		  	  	const x = document.getElementById('chat_0');
+			  	x.focus();
+				  Vue.nextTick(() => {
+					  x.blur();
+					  this.flag = false;
+				  });
+			  });
+		  }
+		  //Vue.nextTick(() => window.setTimeout(() => window.scroll(0, $(this.$refs.chatlist).height()),300));
+
 	  },
     countDownChanged (dismissCountDown) {
       this.dismissCountDown = dismissCountDown
