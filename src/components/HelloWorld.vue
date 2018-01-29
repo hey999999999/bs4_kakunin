@@ -28,8 +28,8 @@
 				</b-row>
 			</b-col>
 			<b-col class="px-0">
-				<div class="border border-danger" style="overflow-y:scroll;height:80vh;">
-					<div class="d-flex flex-column-reverse justify-content-start" style="min-height:100%;" id="chatlist">
+				<div class="border border-danger" style="height:80vh;overflow-y:scroll;">
+					<div class="d-flex flex-column-reverse justify-content-start" id="chatlist" style="min-height:100%;">
 					<div sm="12" v-for="(v, id) in arr" :key="id" class="position-static d-block">
 						<h3 class="border border-info rounded py-2">
 							{{id}}/{{v}}
